@@ -28,4 +28,3 @@ function createCard(card) {
 initialCards.forEach((item) => {
   cardPlace.append(createCard(item));
 });
-//test
