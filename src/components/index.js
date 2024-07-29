@@ -1,4 +1,4 @@
-import { initialCards } from './cards.js';
+import {initialCards} from './cards.js';
 import '../styles/index.css';
 
 // @todo: Темплейт карточки
