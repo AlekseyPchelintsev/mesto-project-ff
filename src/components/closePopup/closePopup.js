@@ -1,4 +1,10 @@
 
+// DOM элементы
+
+const typeEdit = document.querySelector('.popup_type_edit');
+const typeNewCard = document.querySelector('.popup_type_new-card');
+const typeImage = document.querySelector('.popup_type_image');
+
 // Функция закрытия попапа по нажатию кнопки "закрыть"
 
 function closePopup(evt) {
@@ -18,9 +24,9 @@ function closePopupClickOverlay(evt) {
 function closePopupKeydownEsc (evt) {
   if (evt.key === 'Escape') {
     document.removeEventListener('keydown', closePopupKeydownEsc);
-    document.querySelector('.popup_type_edit').classList.remove("popup_is-opened");
-    document.querySelector('.popup_type_new-card').classList.remove("popup_is-opened");
-    document.querySelector('.popup_type_image').classList.remove("popup_is-opened");
+    typeEdit.classList.remove("popup_is-opened");
+    typeNewCard.classList.remove("popup_is-opened");
+    typeImage.classList.remove("popup_is-opened");
   };
 };
 

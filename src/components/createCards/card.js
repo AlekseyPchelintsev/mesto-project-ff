@@ -14,10 +14,8 @@ function createCard(card) {
   cardElement.querySelector('.card__title').textContent = card.name;
   cardElement.querySelector('.card__image').src = card.link;
   cardElement.querySelector('.card__image').alt = card.name;
-
   cardElement.querySelector('.card__image').addEventListener('click', () => openimagePopup(card));
   cardElement.querySelector('.card__like-button').addEventListener('click', likeCard);
-
   deleteCardButton.addEventListener('click', () => {
     cardElement.remove();
   });

@@ -13,12 +13,12 @@ const cardPlace = document.querySelector('.places__list');
 
 const closePopupButton = document.querySelectorAll('.popup__close');
 
-// Попап "Редактировать профиль" DOM
+// DOM попап "Редактировать профиль"
 
 const formElement = document.querySelector('.popup_type_edit');
 const editProfileButton = document.querySelector('.profile__edit-button');
 
-// Попап "Новое место" DOM
+// DOM попап "Новое место"
 
 const newCardElement = document.querySelector('.popup_type_new-card');
 const addCardButton = document.querySelector('.profile__add-button');
