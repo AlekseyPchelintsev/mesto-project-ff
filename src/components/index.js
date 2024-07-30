@@ -1,47 +1,47 @@
 import { initialCards } from './cardsArr/cards.js';
 import { closePopup } from './closePopup/closePopup.js'
-import { createCard } from './createCards/createCards.js';
+import { createCard } from './createCards/card.js';
 import { openEditProfile, handleFormSubmitEditProfile } from './openPoups/editProfilePopup.js'
 import { openAddNewCard, handleFormSubmitNewCard } from './openPoups/addNewCardPopup.js'
 import '../styles/index.css';
 
-// @todo: DOM узлы
+// DOM узлы
 
 const cardPlace = document.querySelector('.places__list');
 
-// @todo: DOM узел кнопки закрытия попапов
+// DOM узел кнопки закрытия попапов
 
-const closePopupButton = document.querySelectorAll('.popup__close')
+const closePopupButton = document.querySelectorAll('.popup__close');
 
-// @todo: Попап "Редактировать профиль" DOM
+// Попап "Редактировать профиль" DOM
 
-const formElement = document.querySelector('.popup_type_edit')
-const editProfileButton = document.querySelector('.profile__edit-button')
+const formElement = document.querySelector('.popup_type_edit');
+const editProfileButton = document.querySelector('.profile__edit-button');
 
-// @todo: Попап "Новое место" DOM
+// Попап "Новое место" DOM
 
-const newCardElement = document.querySelector('.popup_type_new-card')
-const addCardButton = document.querySelector('.profile__add-button')
+const newCardElement = document.querySelector('.popup_type_new-card');
+const addCardButton = document.querySelector('.profile__add-button');
 
-// @todo: Вывести карточки на страницу
+// Вывести карточки на страницу
 
 initialCards.forEach((item) => {
   cardPlace.append(createCard(item));
 });
 
-// @todo: Открытие попапа "Редактирование профиля"
+// Открытие попапа "Редактирование профиля"
 
-editProfileButton.addEventListener('click', openEditProfile)
+editProfileButton.addEventListener('click', openEditProfile);
 
-// @todo: Открытие попапа "Добавление новой карточки"
+// Открытие попапа "Добавление новой карточки"
 
-addCardButton.addEventListener('click', openAddNewCard)
+addCardButton.addEventListener('click', openAddNewCard);
 
-// @todo: Закрытие попапа
+// Закрытие попапа
 
-closePopupButton.forEach(data => {data.addEventListener('click', closePopup)})
+closePopupButton.forEach(data => {data.addEventListener('click', closePopup)});
 
-// @todo: Отправка формы попапов
+// Отправка формы попапов
 
-formElement.addEventListener('submit', handleFormSubmitEditProfile)
-newCardElement.addEventListener('submit', handleFormSubmitNewCard)
+formElement.addEventListener('submit', handleFormSubmitEditProfile);
+newCardElement.addEventListener('submit', handleFormSubmitNewCard);
