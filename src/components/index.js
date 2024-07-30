@@ -9,7 +9,7 @@ import '../styles/index.css';
 
 const cardPlace = document.querySelector('.places__list');
 
-// @todo: Общие DOM узлы попапов
+// @todo: DOM узел кнопки закрытия попапов
 
 const closePopupButton = document.querySelectorAll('.popup__close')
 
@@ -36,10 +36,6 @@ editProfileButton.addEventListener('click', openEditProfile)
 // @todo: Открытие попапа "Добавление новой карточки"
 
 addCardButton.addEventListener('click', openAddNewCard)
-
-// @todo: Открытие попапа изображения карточки
-
-
 
 // @todo: Закрытие попапа
 
