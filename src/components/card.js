@@ -1,12 +1,11 @@
-import { openPopup, } from './modal';
 
 // Функция создания карточки
 
 function createCard(
 	data,
-	deleteCardItem = removeCard,
-	likeCardItem = likeCard,
-	handleImageClick = openImageCard
+	deleteCardItem,
+	likeCardItem,
+	handleImageClick,
 ) 
 {
 	const cardTemplate = document.querySelector('#card-template').content;
@@ -40,24 +39,8 @@ function likeCard(evt) {
 	evt.target.classList.toggle('card__like-button_is-active');
 };
 
-// Открытие попапа просмотра изображения карточки.
-
-function openImageCard(evt) {
-	const popupTypeImage = document.querySelector('.popup_type_image');
-	const imagePopupContent = popupTypeImage.querySelector('.popup__content_content_image');
-	const popupCaption = imagePopupContent.querySelector('.popup__caption');
-	const popupImage = imagePopupContent.querySelector('.popup__image');
-
-	openPopup(popupTypeImage)
-
-	popupCaption.textContent = evt.name;
-	popupImage.src = evt.link;
-	popupImage.alt = evt.name;
-};
-
 export {
 	createCard,
 	removeCard,
 	likeCard,
-  openImageCard,
 };

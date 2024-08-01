@@ -1,5 +1,5 @@
 import { initialCards, } from './cards.js';
-import { createCard, removeCard, likeCard, openImageCard, } from './card.js';
+import { createCard, removeCard, likeCard, } from './card.js';
 import { openPopup, closePopup, } from './modal.js';
 import '../styles/index.css';
 
@@ -17,6 +17,11 @@ const editProfileDescription = document.querySelector('.profile__description');
 // добавление карточки
 const newCardButton = document.querySelector('.profile__add-button');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
+// открытие изображения карточки
+const popupTypeImage = document.querySelector('.popup_type_image');
+const imagePopupContent = popupTypeImage.querySelector('.popup__content_content_image');
+const popupCaption = imagePopupContent.querySelector('.popup__caption');
+const popupImage = imagePopupContent.querySelector('.popup__image');
 // кнопки закрытия попапов (Х)
 const closePopupsButtons = document.querySelectorAll('.popup__close');
 
@@ -49,7 +54,7 @@ function handleFormSubmitEditProfile(evt) {
 };
 
 editProfileButton.addEventListener('click', editProfile);
-popupTypeEdit.addEventListener('submit', handleFormSubmitEditProfile);
+editProfileForm.addEventListener('submit', handleFormSubmitEditProfile);
 
 // Попап "Добавление новой карточки"
 
@@ -68,7 +73,16 @@ function handleFormSubmitNewCard(evt) {
 };
 
 newCardButton.addEventListener('click', () => openPopup(popupTypeNewCard));
-popupTypeNewCard.addEventListener('submit', handleFormSubmitNewCard);
+addNewCardForm.addEventListener('submit', handleFormSubmitNewCard);
+
+// Открытие попапа просмотра изображения карточки.
+
+function openImageCard(evt) {
+	openPopup(popupTypeImage)
+	popupCaption.textContent = evt.name;
+	popupImage.src = evt.link;
+	popupImage.alt = evt.name;
+};
 
 // Закрытие попапа на "крестик"
 
