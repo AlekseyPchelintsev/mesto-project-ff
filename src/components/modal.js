@@ -10,6 +10,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
 	popup.classList.remove('popup_is-opened');
+	document.removeEventListener('click', handleOverlay)
 	document.removeEventListener('keydown', handleEsc);
 };
 
