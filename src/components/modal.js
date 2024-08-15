@@ -2,7 +2,6 @@
 
 function openPopup(popup) {
 	popup.classList.add('popup_is-opened')
-	document.addEventListener('click', handleOverlay)
 	document.addEventListener('keydown', handleEsc);
 };
 
@@ -10,18 +9,21 @@ function openPopup(popup) {
 
 function closePopup(popup) {
 	popup.classList.remove('popup_is-opened');
-	document.removeEventListener('click', handleOverlay)
 	document.removeEventListener('keydown', handleEsc);
 };
 
-// Закрытие по клику на оверлее или по нажатию Escape
+// Закрытие попапа через overlay и (Х)
 
-
-function handleOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target);
-  }
+function handleCloseOnClick(data) {
+	data.addEventListener('click', (evt) => {
+		if (evt.target === evt.currentTarget || 
+				evt.target.classList.contains('popup__close')) {
+			closePopup(evt.currentTarget);
+		}
+	})
 }
+
+// Закрытие по нажатию Escape
 
 function handleEsc(evt) {
 	if (evt.key === 'Escape') {
@@ -33,4 +35,5 @@ function handleEsc(evt) {
 export {
 	openPopup,
 	closePopup,
+	handleCloseOnClick,
 };

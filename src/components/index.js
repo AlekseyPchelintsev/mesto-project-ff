@@ -1,6 +1,6 @@
 import { initialCards, } from './cards.js';
 import { createCard, removeCard, likeCard, } from './card.js';
-import { openPopup, closePopup, } from './modal.js';
+import { openPopup, closePopup, handleCloseOnClick, } from './modal.js';
 import '../styles/index.css';
 
 // DOM узлы:
@@ -8,7 +8,7 @@ import '../styles/index.css';
 const cardPlace = document.querySelector('.places__list');
 
 // Попапы:
-
+const popups = document.querySelectorAll('.popup');
 // редактирование профиля
 const editProfileButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
@@ -22,8 +22,6 @@ const popupTypeImage = document.querySelector('.popup_type_image');
 const imagePopupContent = popupTypeImage.querySelector('.popup__content_content_image');
 const popupCaption = imagePopupContent.querySelector('.popup__caption');
 const popupImage = imagePopupContent.querySelector('.popup__image');
-// кнопки закрытия попапов (Х)
-const closePopupsButtons = document.querySelectorAll('.popup__close');
 
 // Формы:
 
@@ -84,12 +82,9 @@ function openImageCard(evt) {
 	popupImage.alt = evt.name;
 };
 
-// Закрытие попапа на "крестик"
+// Закрытие попапа через overlay и (Х)
 
-closePopupsButtons.forEach(data => {
-  const popup = data.closest('.popup');
-  data.addEventListener('click', () => closePopup(popup));
-});
+popups.forEach(item => handleCloseOnClick(item));
 
 // Рендер карточек
 
