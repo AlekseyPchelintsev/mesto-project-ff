@@ -26,7 +26,6 @@ const profile = document.querySelector('.profile');
 const profileImage = profile.querySelector('.profile__image');
 const userName = profile.querySelector('.profile__title');
 const userDescription = profile.querySelector('.profile__description');
-
 const editProfileButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeEditProfileImage = document.querySelector(
@@ -75,6 +74,9 @@ const editProfile = () => {
   openPopup(popupTypeEdit);
   inputEditProfileName.value = userName.textContent;
   inputEditProfileDescription.value = userDescription.textContent;
+  // дополнительно вызвал валидацию при открытии окна редактирования профиля
+  // чтобы кнопка сабмита была в активном состоянии т.к. данные подгруженные
+  // в поля автоматически являются валидными
   enableValidation(validationData);
   clearValidation(popupTypeEdit, validationData);
 };
@@ -191,12 +193,6 @@ const renderCard = (item, userId) => {
   );
   cardPlace.append(cardElement);
 };
-
-/*
-initialCards.forEach((item) => {
-  renderCard(item, 'append');
-});
-*/
 
 //======================== API ============================
 

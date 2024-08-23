@@ -1,13 +1,13 @@
 import { addLikeCard, deleteLikeCard, deleteCard } from './api';
 // Функция создания карточки
 
-function createCard(
+const createCard = (
   data,
   deleteCardItem,
   likeCardItem,
   handleImageClick,
   idData
-) {
+) => {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate
     .querySelector('.places__item')
@@ -49,18 +49,18 @@ function createCard(
   likeCount.textContent = data.likes.length;
 
   return cardElement;
-}
+};
 
-// Удаление карточки
+// Функция удаления карточки
 
-function removeCard(data, idData) {
+const removeCard = (data, idData) => {
   data.remove();
   deleteCard(idData);
-}
+};
 
-// Реакция like
+// Функция добавления/удаления лайка
 
-function likeCard(likeButton, idData, likeCounter) {
+const likeCard = (likeButton, idData, likeCounter) => {
   if (!likeButton.classList.contains('card__like-button_is-active')) {
     addLikeCard(idData)
       .then((data) => {
@@ -80,6 +80,6 @@ function likeCard(likeButton, idData, likeCounter) {
         console.log(err);
       });
   }
-}
+};
 
 export { createCard, removeCard, likeCard };
