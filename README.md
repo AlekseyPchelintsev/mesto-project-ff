@@ -1,6 +1,6 @@
 ## Проектная работа Mesto
-[Ссылка на проект] 
-https://github.com/AlekseyPchelintsev/mesto-project-ff.git
+#### [Ссылка на проект](https://github.com/AlekseyPchelintsev/mesto-project-ff.git)
 
-## [gh-pages link](https://alekseypchelintsev.github.io/mesto-project-ff/)
+## gh-pages
+#### [Публикация на сервере](https://alekseypchelintsev.github.io/mesto-project-ff/)
 
