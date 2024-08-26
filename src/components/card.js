@@ -58,7 +58,7 @@ const removeCard = (data, idData) => {
   deleteCard(idData);
 };
 
-// Функция добавления/удаления лайка
+// Функция добавления/удаления like
 
 const likeCard = (likeButton, idData, likeCounter) => {
   if (!likeButton.classList.contains('card__like-button_is-active')) {

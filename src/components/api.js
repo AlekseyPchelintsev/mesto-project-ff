@@ -39,6 +39,8 @@ const updateUserInfo = (name, about) => {
       name: name,
       about: about,
     }),
+  }).then((res) => {
+    checkResponseError(res);
   });
 };
 
@@ -53,6 +55,8 @@ const createNewCard = (name, link) => {
       name: name,
       link: link,
     }),
+  }).then((res) => {
+    return checkResponseError(res);
   });
 };
 
@@ -97,6 +101,8 @@ const changeUserAvatar = (imageUrl) => {
     body: JSON.stringify({
       avatar: imageUrl,
     }),
+  }).then((res) => {
+    return checkResponseError(res);
   });
 };
 
@@ -109,4 +115,5 @@ export {
   deleteLikeCard,
   deleteCard,
   changeUserAvatar,
+  checkResponseError,
 };

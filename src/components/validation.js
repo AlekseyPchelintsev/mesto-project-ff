@@ -26,6 +26,7 @@ const hideErrorMessage = (
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
+  inputElement.setCustomValidity(''); // это было познавательно, спасибо! Никак не мог понять как с этим совладать
   errorElement.textContent = '';
   errorElement.classList.remove(errorClass);
 };

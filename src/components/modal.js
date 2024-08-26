@@ -34,14 +34,4 @@ const handleEsc = (evt) => {
   }
 };
 
-// Изменение текста кнопки сабмита при отправке формы
-
-const changeSubmitTextOnLoad = (checkStatus, itemButton) => {
-  if (checkStatus) {
-    itemButton.textContent = 'Сохранение...';
-  } else {
-    itemButton.textContent = 'Сохранить';
-  }
-};
-
-export { openPopup, closePopup, handleCloseOnClick, changeSubmitTextOnLoad };
+export { openPopup, closePopup, handleCloseOnClick };

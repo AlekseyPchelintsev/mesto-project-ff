@@ -1,10 +1,5 @@
 import { createCard, removeCard, likeCard } from './card.js';
-import {
-  openPopup,
-  closePopup,
-  handleCloseOnClick,
-  changeSubmitTextOnLoad,
-} from './modal.js';
+import { openPopup, closePopup, handleCloseOnClick } from './modal.js';
 import { enableValidation, clearValidation } from './validation.js';
 import {
   getUserInfo,
@@ -74,10 +69,6 @@ const editProfile = () => {
   openPopup(popupTypeEdit);
   inputEditProfileName.value = userName.textContent;
   inputEditProfileDescription.value = userDescription.textContent;
-  // дополнительно вызвал валидацию при открытии окна редактирования профиля
-  // чтобы кнопка сабмита была в активном состоянии т.к. данные подгруженные
-  // в поля автоматически являются валидными
-  enableValidation(validationData);
   clearValidation(popupTypeEdit, validationData);
 };
 
@@ -88,10 +79,16 @@ const handleFormSubmitEditProfile = (evt) => {
   const title = (userName.textContent = inputEditProfileName.value);
   const description = (userDescription.textContent =
     inputEditProfileDescription.value);
-  updateUserInfo(title, description).finally(() => {
-    changeSubmitTextOnLoad(false, submitButton);
-  });
-  closePopup(popupTypeEdit);
+  updateUserInfo(title, description)
+    .then(() => {
+      closePopup(popupTypeEdit);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      changeSubmitTextOnLoad(false, submitButton);
+    });
 };
 
 editProfileButton.addEventListener('click', editProfile);
@@ -100,8 +97,8 @@ editProfileForm.addEventListener('submit', handleFormSubmitEditProfile);
 // Попап изменения аватара
 
 const editProfileImage = () => {
+  clearValidation(popupTypeEditProfileImage, validationData);
   openPopup(popupTypeEditProfileImage);
-  inputEditProfileImage.textContent;
 };
 
 const handleFormSubmitEditProfileImage = (evt) => {
@@ -110,20 +107,20 @@ const handleFormSubmitEditProfileImage = (evt) => {
   changeSubmitTextOnLoad(true, submitButton);
   const link = inputEditProfileImage.value;
   changeUserAvatar(link)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
     .then((data) => {
       profileImage.style.backgroundImage = `url(${link})`;
       data.avatar = link;
+    })
+    .then(() => {
+      closePopup(popupTypeEditProfileImage);
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       changeSubmitTextOnLoad(false, submitButton);
     });
   evt.target.reset();
-  closePopup(popupTypeEditProfileImage);
 };
 
 profileImage.addEventListener('click', editProfileImage);
@@ -134,6 +131,11 @@ editProfileImageForm.addEventListener(
 
 // Попап "Добавление новой карточки"
 
+const addNewCard = () => {
+  clearValidation(popupTypeNewCard, validationData);
+  openPopup(popupTypeNewCard);
+};
+
 const handleFormSubmitNewCard = (evt) => {
   evt.preventDefault();
   const submitButton = addNewCardForm.querySelector('.popup__button');
@@ -141,16 +143,13 @@ const handleFormSubmitNewCard = (evt) => {
   const name = cardNameInput.value;
   const link = cardUrlInput.value;
   createNewCard(name, link)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res.status);
-    })
     .then((data) => {
       cardPlace.prepend(
         createCard(data, removeCard, likeCard, openImageCard, data.owner._id)
       );
+    })
+    .then(() => {
+      closePopup(popupTypeNewCard);
     })
     .catch((err) => {
       console.log(err);
@@ -159,13 +158,9 @@ const handleFormSubmitNewCard = (evt) => {
       changeSubmitTextOnLoad(false, submitButton);
     });
   evt.target.reset();
-  closePopup(popupTypeNewCard);
 };
 
-newCardButton.addEventListener('click', () => {
-  clearValidation(popupTypeNewCard, validationData);
-  openPopup(popupTypeNewCard);
-});
+newCardButton.addEventListener('click', addNewCard);
 addNewCardForm.addEventListener('submit', handleFormSubmitNewCard);
 
 // Открытие попапа просмотра изображения карточки.
@@ -192,6 +187,16 @@ const renderCard = (item, userId) => {
     userId
   );
   cardPlace.append(cardElement);
+};
+
+// Изменение текста кнопки сабмита при отправке формы
+
+const changeSubmitTextOnLoad = (checkStatus, itemButton) => {
+  if (checkStatus) {
+    itemButton.textContent = 'Сохранение...';
+  } else {
+    itemButton.textContent = 'Сохранить';
+  }
 };
 
 //======================== API ============================
