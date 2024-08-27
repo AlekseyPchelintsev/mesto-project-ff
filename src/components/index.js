@@ -76,11 +76,12 @@ const handleFormSubmitEditProfile = (evt) => {
   evt.preventDefault();
   const submitButton = editProfileForm.querySelector('.popup__button');
   changeSubmitTextOnLoad(true, submitButton);
-  const title = (userName.textContent = inputEditProfileName.value);
-  const description = (userDescription.textContent =
-    inputEditProfileDescription.value);
+  const title = inputEditProfileName.value;
+  const description = inputEditProfileDescription.value;
   updateUserInfo(title, description)
     .then(() => {
+      userName.textContent = title;
+      userDescription.textContent = description;
       closePopup(popupTypeEdit);
     })
     .catch((err) => {
@@ -110,8 +111,6 @@ const handleFormSubmitEditProfileImage = (evt) => {
     .then((data) => {
       profileImage.style.backgroundImage = `url(${link})`;
       data.avatar = link;
-    })
-    .then(() => {
       closePopup(popupTypeEditProfileImage);
     })
     .catch((err) => {
@@ -147,8 +146,6 @@ const handleFormSubmitNewCard = (evt) => {
       cardPlace.prepend(
         createCard(data, removeCard, likeCard, openImageCard, data.owner._id)
       );
-    })
-    .then(() => {
       closePopup(popupTypeNewCard);
     })
     .catch((err) => {
