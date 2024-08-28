@@ -79,9 +79,9 @@ const handleFormSubmitEditProfile = (evt) => {
   const title = inputEditProfileName.value;
   const description = inputEditProfileDescription.value;
   updateUserInfo(title, description)
-    .then(() => {
-      userName.textContent = title;
-      userDescription.textContent = description;
+    .then((data) => {
+      userName.textContent = data.name;
+      userDescription.textContent = data.about;
       closePopup(popupTypeEdit);
     })
     .catch((err) => {

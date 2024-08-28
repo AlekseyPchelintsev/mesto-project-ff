@@ -17,7 +17,9 @@ const getUserInfo = () => {
     headers: {
       authorization: token,
     },
-  }).then(checkResponseError);
+  }).then((res) => {
+    return checkResponseError(res);
+  });
 };
 
 const getCards = () => {
@@ -25,10 +27,12 @@ const getCards = () => {
     headers: {
       authorization: token,
     },
-  }).then(checkResponseError);
+  }).then((res) => {
+    return checkResponseError(res);
+  });
 };
 
-const updateUserInfo = (name, about) => {
+const updateUserInfo = (title, description) => {
   return fetch(`${url}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -36,11 +40,11 @@ const updateUserInfo = (name, about) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: name,
-      about: about,
+      name: title,
+      about: description,
     }),
   }).then((res) => {
-    checkResponseError(res);
+    return checkResponseError(res);
   });
 };
 
@@ -66,7 +70,9 @@ const addLikeCard = (cardId) => {
     headers: {
       authorization: token,
     },
-  }).then(checkResponseError);
+  }).then((res) => {
+    return checkResponseError(res);
+  });
 };
 
 const deleteLikeCard = (cardId) => {
